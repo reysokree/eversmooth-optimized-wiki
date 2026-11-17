@@ -1,0 +1,1020 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#090805">
+
+  <title>EverSmooth Optimized — Wiki Coming Soon</title>
+
+  <meta name="description" content="The official EverSmooth Optimized Wiki is coming soon. Explore documentation, installation guides, mod information, compatibility and troubleshooting.">
+
+  <!-- Font Awesome -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+  >
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet"
+  >
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="/ESO-Favicon.png">
+  <link rel="apple-touch-icon" href="/ESO-Favicon.png">
+
+  <style>
+    :root {
+      --bg: #090805;
+      --surface: #11100b;
+      --surface-hover: #19170e;
+      --yellow: #ffe500;
+      --gold: #ffb800;
+      --orange: #ff7800;
+      --white: #f8f7ef;
+      --muted: #99968a;
+      --border: rgba(255, 218, 0, 0.13);
+      --gradient: linear-gradient(120deg, #fff000, #ffae00, #ff7200);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--white);
+      font-family: "Inter", sans-serif;
+      overflow-x: hidden;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    button {
+      font-family: inherit;
+    }
+
+    ::selection {
+      background: var(--yellow);
+      color: #080805;
+    }
+
+    /* Background */
+
+    .background {
+      position: fixed;
+      inset: 0;
+      z-index: -3;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .glow {
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      filter: blur(150px);
+      opacity: .14;
+      animation: glowMove 12s ease-in-out infinite alternate;
+    }
+
+    .glow.one {
+      background: #ffcc00;
+      top: -300px;
+      left: -180px;
+    }
+
+    .glow.two {
+      background: #ff6500;
+      bottom: -300px;
+      right: -180px;
+      animation-delay: -5s;
+    }
+
+    @keyframes glowMove {
+      to {
+        transform: translate(100px, 80px);
+      }
+    }
+
+    .grid-bg {
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255, 220, 0, .025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 220, 0, .025) 1px, transparent 1px);
+      background-size: 55px 55px;
+      mask-image: linear-gradient(to bottom, black, transparent 90%);
+    }
+
+    #particles {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .shape {
+      position: absolute;
+      width: 90px;
+      height: 90px;
+      border: 1px solid rgba(255, 218, 0, .12);
+      transform: rotate(45deg);
+      animation: rotateShape 18s linear infinite;
+    }
+
+    .shape.one {
+      top: 23%;
+      left: 6%;
+    }
+
+    .shape.two {
+      bottom: 18%;
+      right: 7%;
+      width: 65px;
+      height: 65px;
+      animation-direction: reverse;
+    }
+
+    @keyframes rotateShape {
+      to {
+        transform: rotate(405deg);
+      }
+    }
+
+    /* Navigation */
+
+    nav {
+      max-width: 1150px;
+      margin: auto;
+      padding: 24px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      animation: fadeDown .8s both;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 14px;
+      font-weight: 900;
+      letter-spacing: -.4px;
+    }
+
+    .brand img {
+      width: 43px;
+      height: 43px;
+      object-fit: contain;
+      filter: drop-shadow(0 0 12px rgba(255, 208, 0, .25));
+    }
+
+    .brand span {
+      color: var(--yellow);
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      background: var(--yellow);
+      border-radius: 50%;
+      box-shadow: 0 0 12px var(--yellow);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      50% {
+        opacity: .3;
+      }
+    }
+
+    /* Hero */
+
+    .hero {
+      max-width: 950px;
+      margin: auto;
+      padding: 105px 24px 95px;
+      text-align: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 10px 15px;
+      border: 1px solid rgba(255, 220, 0, .2);
+      border-radius: 5px;
+      background: rgba(255, 220, 0, .055);
+      color: var(--yellow);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      animation: fadeUp .8s .1s both;
+    }
+
+    .hero-logo {
+      display: block;
+      width: 125px;
+      height: 125px;
+      object-fit: contain;
+      margin: 35px auto 25px;
+      filter: drop-shadow(0 0 25px rgba(255, 200, 0, .22));
+      animation: logoFloat 4s ease-in-out infinite;
+    }
+
+    @keyframes logoFloat {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-12px);
+      }
+    }
+
+    .hero h1 {
+      font-size: clamp(43px, 8vw, 78px);
+      line-height: 1.05;
+      font-weight: 900;
+      letter-spacing: -5px;
+      animation: fadeUp .8s .2s both;
+    }
+
+    .gradient-text {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-description {
+      max-width: 590px;
+      margin: 25px auto 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.95;
+      animation: fadeUp .8s .3s both;
+    }
+
+    /* CTA */
+
+    .actions {
+      display: flex;
+      justify-content: center;
+      gap: 13px;
+      flex-wrap: wrap;
+      margin-top: 33px;
+      animation: fadeUp .8s .4s both;
+    }
+
+    .btn {
+      min-height: 48px;
+      padding: 0 22px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border-radius: 5px;
+      font-size: 11px;
+      font-weight: 800;
+      transition: .25s ease;
+    }
+
+    .btn-primary {
+      color: #090805;
+      background: var(--gradient);
+      box-shadow: 0 5px 25px rgba(255, 190, 0, .12);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 35px rgba(255, 190, 0, .3);
+    }
+
+    .btn-secondary {
+      color: var(--white);
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, .025);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--yellow);
+      color: var(--yellow);
+      transform: translateY(-3px);
+    }
+
+    /* Coming soon status */
+
+    .coming-status {
+      margin: 48px auto 0;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 13px 18px;
+      background: rgba(255, 210, 0, .045);
+      border: 1px solid rgba(255, 210, 0, .13);
+      border-radius: 5px;
+      animation: fadeUp .8s .5s both;
+    }
+
+    .coming-status i {
+      color: var(--yellow);
+      font-size: 15px;
+    }
+
+    .coming-status div {
+      text-align: left;
+    }
+
+    .coming-status strong {
+      display: block;
+      font-size: 11px;
+      margin-bottom: 4px;
+    }
+
+    .coming-status span {
+      display: block;
+      font-size: 10px;
+      color: var(--muted);
+    }
+
+    /* Wiki sections */
+
+    .wiki {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 30px 25px 100px;
+    }
+
+    .section-heading {
+      text-align: center;
+      margin-bottom: 35px;
+    }
+
+    .section-heading small {
+      color: var(--gold);
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .section-heading h2 {
+      font-size: 28px;
+      letter-spacing: -1.2px;
+      margin-top: 12px;
+      font-weight: 900;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 10px;
+      line-height: 1.8;
+    }
+
+    .wiki-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .wiki-card {
+      position: relative;
+      padding: 24px;
+      min-height: 175px;
+      border: 1px solid var(--border);
+      background: rgba(17, 16, 11, .85);
+      border-radius: 7px;
+      overflow: hidden;
+      transition: .3s ease;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .wiki-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .wiki-card::after {
+      content: "";
+      position: absolute;
+      top: -50px;
+      right: -50px;
+      width: 110px;
+      height: 110px;
+      background: rgba(255, 200, 0, .06);
+      transform: rotate(45deg);
+      transition: .3s;
+    }
+
+    .wiki-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(255, 210, 0, .4);
+      background: var(--surface-hover);
+    }
+
+    .wiki-card:hover::after {
+      background: rgba(255, 200, 0, .15);
+    }
+
+    .card-icon {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      background: rgba(255, 210, 0, .09);
+      color: var(--yellow);
+      border-radius: 5px;
+      font-size: 17px;
+      margin-bottom: 20px;
+    }
+
+    .wiki-card h3 {
+      font-size: 13px;
+      font-weight: 800;
+      margin-bottom: 9px;
+    }
+
+    .wiki-card p {
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.8;
+    }
+
+    .card-label {
+      position: absolute;
+      top: 24px;
+      right: 20px;
+      font-size: 8px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      color: #c3a800;
+      text-transform: uppercase;
+    }
+
+    /* About */
+
+    .about {
+      max-width: 850px;
+      margin: 0 auto;
+      padding: 0 25px 100px;
+    }
+
+    .about-box {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      padding: 28px;
+      border: 1px solid var(--border);
+      background: linear-gradient(
+        120deg,
+        rgba(255, 210, 0, .055),
+        rgba(255, 120, 0, .025)
+      );
+      border-radius: 7px;
+    }
+
+    .about-icon {
+      min-width: 43px;
+      height: 43px;
+      display: grid;
+      place-items: center;
+      color: var(--yellow);
+      background: rgba(255, 210, 0, .1);
+      border-radius: 5px;
+    }
+
+    .about-box h3 {
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .about-box p {
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.95;
+    }
+
+    /* Footer */
+
+    footer {
+      max-width: 1100px;
+      margin: auto;
+      padding: 25px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 1.5px;
+    }
+
+    .footer-brand img {
+      width: 29px;
+      height: 29px;
+      object-fit: contain;
+    }
+
+    .footer-copy {
+      font-size: 10px;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 17px;
+    }
+
+    .footer-links a {
+      font-size: 15px;
+      color: var(--muted);
+      transition: .2s;
+    }
+
+    .footer-links a:hover {
+      color: var(--yellow);
+      transform: translateY(-2px);
+    }
+
+    /* Animations */
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(25px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeDown {
+      from {
+        opacity: 0;
+        transform: translateY(-15px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Responsive */
+
+    @media (max-width: 760px) {
+      .hero {
+        padding-top: 85px;
+      }
+
+      .hero h1 {
+        letter-spacing: -3px;
+      }
+
+      .wiki-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .shape {
+        opacity: .4;
+      }
+    }
+
+    @media (max-width: 480px) {
+      nav {
+        padding: 19px;
+      }
+
+      .brand {
+        font-size: 12px;
+      }
+
+      .brand img {
+        width: 36px;
+        height: 36px;
+      }
+
+      .nav-right {
+        font-size: 9px;
+      }
+
+      .hero {
+        padding: 75px 20px 75px;
+      }
+
+      .hero-logo {
+        width: 100px;
+        height: 100px;
+      }
+
+      .hero-description {
+        font-size: 12px;
+      }
+
+      .wiki-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .wiki-card {
+        min-height: 155px;
+      }
+
+      .about-box {
+        padding: 20px;
+      }
+
+      footer {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="background">
+    <div class="glow one"></div>
+    <div class="glow two"></div>
+    <div class="shape one"></div>
+    <div class="shape two"></div>
+  </div>
+
+  <div class="grid-bg"></div>
+  <canvas id="particles"></canvas>
+
+  <!-- Navigation -->
+  <nav>
+    <a href="#" class="brand">
+      <img src="/ESO-Favicon.png" alt="EverSmooth Optimized logo">
+      <div>EVER<span>SMOOTH</span></div>
+    </a>
+
+    <div class="nav-right">
+      <span class="status-dot"></span>
+      WIKI UNDER DEVELOPMENT
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- Hero -->
+    <section class="hero">
+
+      <div class="eyebrow">
+        <i class="fa-solid fa-book-open"></i>
+        Official documentation
+      </div>
+
+      <img
+        src="/ESO-Favicon.png"
+        alt="EverSmooth Optimized"
+        class="hero-logo"
+      >
+
+      <h1>
+        Everything about<br>
+        <span class="gradient-text">EverSmooth.</span>
+      </h1>
+
+      <p class="hero-description">
+        Your central place for everything EverSmooth Optimized.
+        From installation guides and mod information to compatibility,
+        configuration and troubleshooting — everything will be
+        documented in one place.
+      </p>
+
+      <div class="actions">
+        <a href="#documentation" class="btn btn-primary">
+          <i class="fa-solid fa-book"></i>
+          Explore the wiki
+        </a>
+
+        <a href="https://modrinth.com/" target="_blank" rel="noopener noreferrer"
+           class="btn btn-secondary">
+          <i class="fa-solid fa-cube"></i>
+          Modpack on Modrinth
+          <i class="fa-solid fa-arrow-up-right-from-square"></i>
+        </a>
+      </div>
+
+      <div class="coming-status">
+        <i class="fa-solid fa-hammer"></i>
+        <div>
+          <strong>Something is being built.</strong>
+          <span>The EverSmooth Optimized Wiki will be live ASAP.</span>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Documentation Preview -->
+    <section class="wiki" id="documentation">
+
+      <div class="section-heading">
+        <small>THE KNOWLEDGE BASE</small>
+        <h2>What's coming to the wiki?</h2>
+        <p>
+          Documentation designed to help you understand and get
+          the most out of EverSmooth Optimized.
+        </p>
+      </div>
+
+      <div class="wiki-grid">
+
+        <article class="wiki-card">
+          <span class="card-label">GUIDES</span>
+          <div class="card-icon">
+            <i class="fa-solid fa-download"></i>
+          </div>
+          <h3>Installation Guide</h3>
+          <p>
+            Step-by-step instructions to download, install and
+            get your modpack running.
+          </p>
+        </article>
+
+        <article class="wiki-card">
+          <span class="card-label">REFERENCE</span>
+          <div class="card-icon">
+            <i class="fa-solid fa-puzzle-piece"></i>
+          </div>
+          <h3>Mod Directory</h3>
+          <p>
+            Discover the mods included in the pack, their purposes
+            and the features they provide.
+          </p>
+        </article>
+
+        <article class="wiki-card">
+          <span class="card-label">INFORMATION</span>
+          <div class="card-icon">
+            <i class="fa-solid fa-sliders"></i>
+          </div>
+          <h3>Configuration</h3>
+          <p>
+            Learn about available settings, customization
+            and configuration options.
+          </p>
+        </article>
+
+        <article class="wiki-card">
+          <span class="card-label">REFERENCE</span>
+          <div class="card-icon">
+            <i class="fa-solid fa-code-branch"></i>
+          </div>
+          <h3>Compatibility</h3>
+          <p>
+            Find information about supported Minecraft versions,
+            loaders and platforms.
+          </p>
+        </article>
+
+        <article class="wiki-card">
+          <span class="card-label">SUPPORT</span>
+          <div class="card-icon">
+            <i class="fa-solid fa-wrench"></i>
+          </div>
+          <h3>Troubleshooting</h3>
+          <p>
+            Understand common issues, errors and possible
+            solutions.
+          </p>
+        </article>
+
+        <article class="wiki-card">
+          <span class="card-label">DOCUMENTATION</span>
+          <div class="card-icon">
+            <i class="fa-solid fa-circle-info"></i>
+          </div>
+          <h3>About the Project</h3>
+          <p>
+            Learn about EverSmooth Optimized, its goals,
+            development and releases.
+          </p>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- About -->
+    <section class="about">
+      <div class="about-box">
+        <div class="about-icon">
+          <i class="fa-solid fa-shield-halved"></i>
+        </div>
+
+        <div>
+          <h3>Community-driven documentation.</h3>
+          <p>
+            EverSmooth Optimized is an independent Minecraft
+            modpack project. This wiki is intended to provide
+            documentation and useful resources for its users.
+            It is not affiliated with or endorsed by Mojang
+            Studios or Microsoft.
+          </p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+
+    <div class="footer-brand">
+      <img src="/ESO-Favicon.png" alt="">
+      EVERsmooth OPTIMIZED
+    </div>
+
+    <div class="footer-copy">
+      Built for players. Documented with care.
+    </div>
+
+    <div class="footer-links">
+      <a href="#" target="_blank"
+         rel="noopener noreferrer" aria-label="Modrinth">
+        <i class="fa-solid fa-cube"></i>
+      </a>
+
+      <a href="https://github.com/ReysoKree" target="_blank"
+         rel="noopener noreferrer" aria-label="GitHub">
+        <i class="fa-brands fa-github"></i>
+      </a>
+    </div>
+
+  </footer>
+
+  <script>
+    // Particle animation
+    const canvas = document.getElementById("particles");
+    const ctx = canvas.getContext("2d");
+
+    const reducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    let particles = [];
+    let width = 0;
+    let height = 0;
+    let animationFrame;
+
+    function resizeCanvas() {
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+      width = window.innerWidth;
+      height = window.innerHeight;
+
+      canvas.width = width * dpr;
+      canvas.height = height * dpr;
+
+      canvas.style.width = width + "px";
+      canvas.style.height = height + "px";
+
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+      createParticles();
+    }
+
+    class Particle {
+      constructor() {
+        this.x = Math.random() * width;
+        this.y = Math.random() * height;
+        this.size = Math.random() * 2 + .5;
+        this.speed = Math.random() * .35 + .1;
+        this.opacity = Math.random() * .4 + .1;
+      }
+
+      update() {
+        this.y -= this.speed;
+        this.x += Math.sin(this.y * .01) * .15;
+
+        if (this.y < -5) {
+          this.y = height + 5;
+          this.x = Math.random() * width;
+        }
+      }
+
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+
+        ctx.fillStyle =
+          `rgba(255, 205, 0, ${this.opacity})`;
+
+        ctx.fill();
+      }
+    }
+
+    function createParticles() {
+      const count = Math.min(
+        85,
+        Math.floor((width * height) / 12000)
+      );
+
+      particles = Array.from(
+        { length: count },
+        () => new Particle()
+      );
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, width, height);
+
+      particles.forEach(particle => {
+        particle.update();
+        particle.draw();
+      });
+
+      animationFrame = requestAnimationFrame(animate);
+    }
+
+    resizeCanvas();
+
+    if (reducedMotion) {
+      particles.forEach(particle => particle.draw());
+    } else {
+      animate();
+    }
+
+    window.addEventListener("resize", () => {
+      cancelAnimationFrame(animationFrame);
+      resizeCanvas();
+
+      if (reducedMotion) {
+        particles.forEach(particle => particle.draw());
+      } else {
+        animate();
+      }
+    });
+
+    // Scroll reveal animation
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: .12 }
+    );
+
+    document.querySelectorAll(".wiki-card").forEach(
+      (card, index) => {
+        card.style.transitionDelay = `${index * 90}ms`;
+        observer.observe(card);
+      }
+    );
+  </script>
+
+</body>
+</html>
